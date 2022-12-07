@@ -28,13 +28,8 @@ public class FuncionarioService {
     }
 
     public Funcionario getFuncionario(Integer idFuncionario) {
-        Optional<Funcionario> funcionario = this.funcionarioRepository.findById(idFuncionario);
-
-        if (funcionario.isEmpty()) {
-            throw new RecursoNaoEncontradoError("O funcionário não foi encontrado!");
-        } else {
-            return funcionario.get();
-        }
+        return this.funcionarioRepository.findById(idFuncionario)
+                .orElseThrow(()-> new RecursoNaoEncontradoError("O funcionário não foi encontrado!"));
     }
 
     public Funcionario salvar(FuncionarioDTO dto) {

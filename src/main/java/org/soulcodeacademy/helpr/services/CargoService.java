@@ -21,13 +21,8 @@ public class CargoService {
     }
 
     public Cargo getCargo(Integer idCargo) {
-        Optional<Cargo> cargo = this.cargoRepository.findById(idCargo);
-
-        if(cargo.isEmpty()) {
-            throw new RecursoNaoEncontradoError("O cargo não foi encontrado!");
-        } else {
-            return cargo.get();
-        }
+        return this.cargoRepository.findById(idCargo)
+                .orElseThrow(()-> new RecursoNaoEncontradoError("O cargo não foi encontrado!"));
     }
 
     public Cargo salvar(CargoDTO dto) {
