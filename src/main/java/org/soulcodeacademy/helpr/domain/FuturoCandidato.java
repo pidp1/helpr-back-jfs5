@@ -21,6 +21,17 @@ public class FuturoCandidato {
     @Column(nullable = false)
     private String setor;
 
+    public FuturoCandidato() {
+    }
+
+    public FuturoCandidato(Integer idFuturoCandidato, String nome, String email, String descricaoHabilidades, String setor) {
+        this.idFuturoCandidato = idFuturoCandidato;
+        this.nome = nome;
+        this.email = email;
+        this.descricaoHabilidades = descricaoHabilidades;
+        this.setor = setor;
+    }
+
     public Integer getIdFuturoCandidato() {
         return idFuturoCandidato;
     }
