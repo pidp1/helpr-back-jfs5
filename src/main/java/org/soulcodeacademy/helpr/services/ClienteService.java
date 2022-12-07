@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service // torna o objeto da classe injetavel
+@Service
 public class ClienteService {
-    @Autowired // injeção
+    @Autowired
     private ClienteRepository clienteRepository;
 
     public List<Cliente> listarTodos() {
@@ -20,11 +20,9 @@ public class ClienteService {
     }
 
     public Cliente getCliente(Integer idCliente) {
-        // SELECT * FROM usuarios WHERE id = ?
         Optional<Cliente> cliente = this.clienteRepository.findById(idCliente);
 
         if (cliente.isEmpty()) {
-            // lançar exceção
             throw new RecursoNaoEncontradoError("Cliente não encontrado!");
         } else {
             return cliente.get();
@@ -32,7 +30,6 @@ public class ClienteService {
     }
 
     public Cliente salvar(ClienteDTO dto) {
-        // Criação da entidade Cliente, a partir dos dados validados do DTO
         Cliente novoCliente = new Cliente(null, dto.getNome(), dto.getEmail(), dto.getCpf(), dto.getSenha(), dto.getTelefone());
 
         return this.clienteRepository.save(novoCliente);
