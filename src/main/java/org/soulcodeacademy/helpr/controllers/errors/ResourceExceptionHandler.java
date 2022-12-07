@@ -2,6 +2,7 @@ package org.soulcodeacademy.helpr.controllers.errors;
 
 import org.soulcodeacademy.helpr.services.errors.ParametrosInsuficientesError;
 import org.soulcodeacademy.helpr.services.errors.RecursoNaoEncontradoError;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -22,7 +23,6 @@ public class ResourceExceptionHandler {
         response.setMessage(erro.getMessage());
         response.setPath(request.getRequestURI());
 
-        // Retorna o objeto com os dados e código 404
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
@@ -43,10 +43,22 @@ public class ResourceExceptionHandler {
         CustomErrorResponse response = new CustomErrorResponse();
 
         response.setTimestamp(LocalDateTime.now());
-        response.setStatus(HttpStatus.FORBIDDEN.value()); // 403
+        response.setStatus(HttpStatus.FORBIDDEN.value());
         response.setMessage("Email/senha inválidos!");
         response.setPath(request.getRequestURI());
 
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public  ResponseEntity<CustomErrorResponse> dataIntegrityViolationException(DataIntegrityViolationException erro, HttpServletRequest request){
+        CustomErrorResponse response = new CustomErrorResponse();
+
+        response.setMessage("Não foi possível continuar operação.");
+        response.setStatus(HttpStatus.CONFLICT.value());
+        response.setTimestamp(LocalDateTime.now());
+        response.setPath(request.getRequestURI());
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
     }
 }
