@@ -51,7 +51,3 @@ public class ClienteService {
         this.clienteRepository.delete(cliente);
     }
 }
-
-// Quando usar entidade e dto?
-// Entidade = retorno dos dados
-// DTO = entrada de dados

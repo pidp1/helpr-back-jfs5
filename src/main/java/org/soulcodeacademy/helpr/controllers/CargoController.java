@@ -30,7 +30,7 @@ public class CargoController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_FUNCIONARIO')")
     @GetMapping("/cargos")
     public List<Cargo> listar() {
-        return this.cargoService.listar(); // JSON = JAVASCRIPT OBJECT NOTATION
+        return this.cargoService.listar();
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_FUNCIONARIO')")
@@ -43,7 +43,7 @@ public class CargoController {
     @PostMapping("/cargos")
     public Cargo salvar(@Valid @RequestBody CargoDTO cargo) {
         Cargo salvo = this.cargoService.salvar(cargo);
-        return salvo; // A resposta será o cargo inserido
+        return salvo;
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
