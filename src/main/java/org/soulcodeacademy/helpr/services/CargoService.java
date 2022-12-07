@@ -24,9 +24,9 @@ public class CargoService {
         Optional<Cargo> cargo = this.cargoRepository.findById(idCargo);
 
         if(cargo.isEmpty()) {
-            throw new RecursoNaoEncontradoError("O cargo não foi encontrado!"); // Causa um erro com a mensagem
+            throw new RecursoNaoEncontradoError("O cargo não foi encontrado!");
         } else {
-            return cargo.get(); // Extrair o cargo de dentro do optional
+            return cargo.get();
         }
     }
 
