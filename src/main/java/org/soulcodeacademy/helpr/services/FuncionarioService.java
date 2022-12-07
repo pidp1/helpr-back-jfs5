@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service // instanciar automaticamente minha classe
+@Service
 public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
@@ -28,20 +28,17 @@ public class FuncionarioService {
     }
 
     public Funcionario getFuncionario(Integer idFuncionario) {
-        // Optional = pode existir ou não a entidade
         Optional<Funcionario> funcionario = this.funcionarioRepository.findById(idFuncionario);
 
         if (funcionario.isEmpty()) {
             throw new RecursoNaoEncontradoError("O funcionário não foi encontrado!");
         } else {
-            return funcionario.get(); // pega o valor da entidade encontrada
+            return funcionario.get();
         }
     }
 
     public Funcionario salvar(FuncionarioDTO dto) {
-        Cargo cargo = this.cargoService.getCargo(dto.getIdCargo()); // verifica se o cargo existe mesmo
-        // id, nome, email,cpf, String senha, foto, cargo
-        // Transferindo informações do DTO para nossa entidade
+        Cargo cargo = this.cargoService.getCargo(dto.getIdCargo());
         Funcionario funcionario = new Funcionario(null, dto.getNome(), dto.getEmail(), dto.getCpf(), dto.getSenha(), dto.getFoto(), cargo);
         Funcionario salvo = this.funcionarioRepository.save(funcionario);
 
@@ -49,9 +46,7 @@ public class FuncionarioService {
     }
 
     public Funcionario atualizar(Integer idFuncionario, FuncionarioDTO dto) {
-        // Busca o funcionario com o idFuncionario
         Funcionario funcionarioAtual = this.getFuncionario(idFuncionario);
-        // Busca os dados do cargo a ser alterado
         Cargo cargo = this.cargoService.getCargo(dto.getIdCargo());
 
         funcionarioAtual.setNome(dto.getNome());
