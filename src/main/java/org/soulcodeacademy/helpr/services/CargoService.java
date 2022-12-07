@@ -17,6 +17,7 @@ public class CargoService {
     private CargoRepository cargoRepository;
 
     public List<Cargo> listar() {
+
         return this.cargoRepository.findAll();
     }
 

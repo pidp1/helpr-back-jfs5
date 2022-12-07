@@ -20,6 +20,7 @@ public class FuncionarioService {
     private CargoService cargoService;
 
     public List<Funcionario> listar() {
+
         return this.funcionarioRepository.findAll();
     }
 

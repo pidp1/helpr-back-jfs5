@@ -82,6 +82,7 @@ public class ChamadoService {
     }
 
     public List<Chamado> listarPorStatus(StatusChamado status) {
+
         return this.chamadoRepository.findByStatus(status);
     }
 
