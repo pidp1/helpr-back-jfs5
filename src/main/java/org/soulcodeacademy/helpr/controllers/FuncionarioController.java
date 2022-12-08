@@ -16,6 +16,7 @@ public class FuncionarioController {
 
     @GetMapping("/funcionarios")
     public List<Funcionario> listar() {
+
         return this.funcionarioService.listar();
     }
 
@@ -43,6 +44,7 @@ public class FuncionarioController {
 
     @DeleteMapping("/funcionarios/{idFuncionario}")
     public void deletar(@PathVariable Integer idFuncionario) {
+
         this.funcionarioService.deletar(idFuncionario);
     }
 }
