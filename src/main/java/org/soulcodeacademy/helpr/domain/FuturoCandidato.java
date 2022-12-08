@@ -21,9 +21,21 @@ public class FuturoCandidato {
     @Column(nullable = false)
     private String setor;
 
+    public FuturoCandidato() {
+    }
+
+    public FuturoCandidato(Integer idFuturoCandidato, String nome, String email, String descricaoHabilidades, String setor) {
+        this.idFuturoCandidato = idFuturoCandidato;
+        this.nome = nome;
+        this.email = email;
+        this.descricaoHabilidades = descricaoHabilidades;
+        this.setor = setor;
+    }
+
     public Integer getIdFuturoCandidato() {
         return idFuturoCandidato;
     }
+
 
     public void setIdFuturoCandidato(Integer idFuturoCandidato) {
         this.idFuturoCandidato = idFuturoCandidato;
@@ -38,14 +50,17 @@ public class FuturoCandidato {
     }
 
     public String getEmail() {
+
         return email;
     }
 
     public void setEmail(String email) {
+
         this.email = email;
     }
 
     public String getDescricaoHabilidades() {
+
         return descricaoHabilidades;
     }
 
@@ -54,10 +69,12 @@ public class FuturoCandidato {
     }
 
     public String getSetor() {
+
         return setor;
     }
 
     public void setSetor(String setor) {
+
         this.setor = setor;
     }
 }
