@@ -49,10 +49,6 @@ public class ChamadoService {
         chamadoAtual.setDescricao(dto.getDescricao());
         chamadoAtual.setCliente(cliente);
 
-        if (dto.getIdFuncionario() == null) {
-            throw new ParametrosInsuficientesError("idFuncionario obrigatório");
-        } else {
-            Funcionario funcionario = this.funcionarioService.getFuncionario(dto.getIdFuncionario());
 
             switch (dto.getStatus()) {
                 case RECEBIDO -> {
@@ -61,21 +57,32 @@ public class ChamadoService {
                     chamadoAtual.setDataFechamento(null);
                 }
                 case ATRIBUIDO -> {
+                    if (dto.getIdFuncionario() == null) {
+                        throw new ParametrosInsuficientesError("idFuncionario obrigatório");
+                    } else {
+                        Funcionario funcionario = this.funcionarioService.getFuncionario(dto.getIdFuncionario());
+
                     chamadoAtual.setStatus(StatusChamado.ATRIBUIDO);
                     chamadoAtual.setFuncionario(funcionario);
                     chamadoAtual.setDataFechamento(null);
+                    }
                 }
                 case CONCLUIDO -> {
+                    if (dto.getIdFuncionario() == null) {
+                        throw new ParametrosInsuficientesError("idFuncionario obrigatório");
+                    } else {
+                        Funcionario funcionario = this.funcionarioService.getFuncionario(dto.getIdFuncionario());
+
                     chamadoAtual.setStatus(StatusChamado.CONCLUIDO);
                     chamadoAtual.setFuncionario(funcionario);
                     chamadoAtual.setDataFechamento(LocalDate.now());
+                    }
                 }
                 case ARQUIVADO -> {
                     chamadoAtual.setStatus(StatusChamado.ARQUIVADO);
                     chamadoAtual.setFuncionario(null);
                     chamadoAtual.setDataFechamento(LocalDate.now());
                 }
-            }
         }
 
         return this.chamadoRepository.save(chamadoAtual);
