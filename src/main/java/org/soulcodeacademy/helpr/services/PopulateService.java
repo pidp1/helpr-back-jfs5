@@ -72,11 +72,11 @@ public class PopulateService {
         ch2.setFuncionario(f1);
         ch2.setStatus(StatusChamado.ATRIBUIDO);
         Chamado ch3 = new Chamado(null, "Fazer atualização de firmware", "atualizar remotamente o firmware das máquinas");
-        ch3.setStatus(StatusChamado.RECEBIDO);
-        Chamado ch4 = new Chamado(null, "Fazer correção de bugs", "Corrigir bugs na página de contato");
-        ch4.setStatus(StatusChamado.RECEBIDO);
+        ch3.setCliente(cl1);
+       Chamado ch4 = new Chamado(null, "Fazer correção de bugs", "Corrigir bugs na página de contato");
+        ch4.setCliente(cl1);
         Chamado ch5 = new Chamado(null, "instalar wordpress no servidor", "Instalar software no servidor do cliente");
-        ch5.setStatus(StatusChamado.RECEBIDO);
+        ch5.setCliente(cl1);
         Chamado ch6 = new Chamado(null, "Correção de erros na página 'Frieza Fede'", "fazer revisão de erros ná página principal do site");
         ch6.setCliente(cl2);
         ch6.setFuncionario(f1);
@@ -89,7 +89,7 @@ public class PopulateService {
         this.cargoRepository.saveAll(List.of(c1, c2, c3));
         this.funcionarioRepository.saveAll(List.of(f1, f2, f3, f4, f6, f7, f8, f9, f10, f11));
         this.clienteRepository.saveAll(List.of(cl1, cl2, cl3, cl4));
-        this.chamadoRepository.saveAll(List.of(ch1, ch2, ch3, ch4, ch5, ch6, ch7));
+        this.chamadoRepository.saveAll(List.of(ch1, ch2, ch3, ch4, ch5));
     }
 }
 
