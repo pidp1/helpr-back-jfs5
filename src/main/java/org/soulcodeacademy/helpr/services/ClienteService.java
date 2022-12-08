@@ -20,13 +20,8 @@ public class ClienteService {
     }
 
     public Cliente getCliente(Integer idCliente) {
-        Optional<Cliente> cliente = this.clienteRepository.findById(idCliente);
-
-        if (cliente.isEmpty()) {
-            throw new RecursoNaoEncontradoError("Cliente não encontrado!");
-        } else {
-            return cliente.get();
-        }
+        return this.clienteRepository.findById(idCliente)
+                .orElseThrow(()-> new RecursoNaoEncontradoError("Cliente não encontrado!"));
     }
 
     public Cliente salvar(ClienteDTO dto) {
