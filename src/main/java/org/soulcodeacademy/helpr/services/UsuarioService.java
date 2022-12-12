@@ -5,6 +5,10 @@ import org.soulcodeacademy.helpr.domain.enums.Perfil;
 import org.soulcodeacademy.helpr.repositories.UsuarioRepository;
 import org.soulcodeacademy.helpr.services.errors.RecursoNaoEncontradoError;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +24,7 @@ public class UsuarioService {
                 .orElseThrow(()-> new RecursoNaoEncontradoError("O Usuario não foi encontrado!"));
     }
 
-    public List<Usuario> listar() {
+    public Iterable<Usuario> listar() {
 
         return usuarioRepository.findAll();
     }
@@ -65,6 +69,12 @@ public class UsuarioService {
         Usuario perfilEncontrado = this.listarEmail(usuarioEncontrado.getEmail());
         // extraido o perfil do perfil encontrado
         return perfilEncontrado.getPerfil();
+    }
+
+    public Page<Usuario> pageUsuarios(Integer pagina){
+
+        Pageable pageable = PageRequest.of(pagina, 5);
+        return this.usuarioRepository.findAll(pageable);
     }
 }
 
