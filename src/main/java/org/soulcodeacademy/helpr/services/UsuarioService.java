@@ -1,8 +1,6 @@
 package org.soulcodeacademy.helpr.services;
 
-import org.soulcodeacademy.helpr.domain.Funcionario;
 import org.soulcodeacademy.helpr.domain.Usuario;
-import org.soulcodeacademy.helpr.domain.dto.UsuarioDTO;
 import org.soulcodeacademy.helpr.domain.enums.Perfil;
 import org.soulcodeacademy.helpr.repositories.UsuarioRepository;
 import org.soulcodeacademy.helpr.services.errors.RecursoNaoEncontradoError;
@@ -10,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UsuarioService {
-
     @Autowired
     private UsuarioRepository usuarioRepository;
 
@@ -70,5 +66,5 @@ public class UsuarioService {
         // extraido o perfil do perfil encontrado
         return perfilEncontrado.getPerfil();
     }
-
 }
+

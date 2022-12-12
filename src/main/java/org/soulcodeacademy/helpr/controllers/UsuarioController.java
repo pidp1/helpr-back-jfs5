@@ -1,7 +1,6 @@
 package org.soulcodeacademy.helpr.controllers;
 
 import org.soulcodeacademy.helpr.domain.Usuario;
-import org.soulcodeacademy.helpr.domain.dto.UsuarioDTO;
 import org.soulcodeacademy.helpr.domain.enums.Perfil;
 import org.soulcodeacademy.helpr.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class UsuarioController {
-
     @Autowired
     private UsuarioService usuarioService;
 
@@ -43,8 +40,3 @@ public class UsuarioController {
     }
 }
 
-    //O controller deve expôr os seguintes endpoints:
-    // /usuarios/{email} (GET): Listar o usuário com o email indicado no Path Variable;
-    // /usuarios/{cpf} (GET): Listar o usuário com o cpf indicado no Path Variable;
-    // /usuarios/busca (GET): Listar os usuários com o termo de busca indicado no Request Param;
-    // /usuarios/{id}/perfil (GET): Listar o perfil (enum) do usuário com base no id indicado.
