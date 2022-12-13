@@ -24,7 +24,7 @@ import java.util.List;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
-    private static final String[] PUBLIC_ENDPOINTS = {"/auth/**"};
+    private static final String[] PUBLIC_ENDPOINTS = {"/auth/**", "/swagger-ui/index.html", "/v2/api-docs/**","/swagger.json", "/swagger-resources/**","/webjars/**", "/swagger-ui.html", "/swagger-ui/**" };
 
     @Autowired
     private TokenFilter filter;
