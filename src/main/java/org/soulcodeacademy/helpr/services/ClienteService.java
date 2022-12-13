@@ -5,6 +5,7 @@ import org.soulcodeacademy.helpr.domain.dto.ClienteDTO;
 import org.soulcodeacademy.helpr.repositories.ClienteRepository;
 import org.soulcodeacademy.helpr.services.errors.RecursoNaoEncontradoError;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,8 @@ import java.util.Optional;
 
 @Service
 public class ClienteService {
+    @Autowired
+    private PasswordEncoder encoder;
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -25,7 +28,7 @@ public class ClienteService {
     }
 
     public Cliente salvar(ClienteDTO dto) {
-        Cliente novoCliente = new Cliente(null, dto.getNome(), dto.getEmail(), dto.getCpf(), dto.getSenha(), dto.getTelefone());
+        Cliente novoCliente = new Cliente(null, dto.getNome(), dto.getEmail(), dto.getCpf(), encoder.encode(dto.getSenha()), dto.getTelefone());
 
         return this.clienteRepository.save(novoCliente);
     }
@@ -35,7 +38,7 @@ public class ClienteService {
         clienteAtual.setNome(dto.getNome());
         clienteAtual.setEmail(dto.getEmail());
         clienteAtual.setCpf(dto.getCpf());
-        clienteAtual.setSenha(dto.getSenha());
+        clienteAtual.setSenha(encoder.encode(dto.getSenha()));
         clienteAtual.setTelefone(dto.getTelefone());
 
         return this.clienteRepository.save(clienteAtual);

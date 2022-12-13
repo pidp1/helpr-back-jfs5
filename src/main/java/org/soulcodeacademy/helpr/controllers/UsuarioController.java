@@ -4,6 +4,7 @@ import org.soulcodeacademy.helpr.domain.Usuario;
 import org.soulcodeacademy.helpr.domain.enums.Perfil;
 import org.soulcodeacademy.helpr.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,5 +39,11 @@ public class UsuarioController {
     public Perfil ListarId(@PathVariable Integer idUsuario){
         return this.usuarioService.listarPerfil(idUsuario);
     }
+
+    @GetMapping("/usuarios/listagem")
+    public Page<Usuario> paginas(@RequestParam Integer pagina){
+        return this.usuarioService.pageUsuarios(pagina);
+    }
+
 }
 
